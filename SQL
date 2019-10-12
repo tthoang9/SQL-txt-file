@@ -12,7 +12,7 @@ create table user
     first_name varchar(255) not null,
     last_name varchar(255) not null,
     gender varchar(1),
-    person_ID varchar(255) not null
+    person_ID varchar(255) not null,
     foreign key(username) references person(username)
 );
 
@@ -27,7 +27,7 @@ create table person
     father_ID varchar(255),
     mother_ID varchar(255),
     spouse_ID varchar(255),
-    foreign key(username) references person(username)
+    foreign key(associated_username) references person(username)
 );
 
 create table event
@@ -42,7 +42,7 @@ create table event
     city varchar(255) not null,
     event_type varchar(255) not null,
     year integer not null,
-    foreign key(username) references person(username)
+    foreign key(associated_username) references person(username)
 );
 
 create table authtoken
@@ -55,6 +55,3 @@ create table authtoken
 	foreign key(person_ID) references user(person_ID),
 	foreign key(username) references user(username)
 );
-
-insert into user (username, password, email_address, first_name, last_name, gender, person_ID);
-
