@@ -1,0 +1,60 @@
+drop table if exists person;
+drop table if exists user;
+drop table if exists event;
+drop table if exists authtoken;
+
+create table user
+(
+    id integer not null primary key autoincrement,
+    username varchar(255) not null,
+    password varchar(255) not null,
+    email_address varchar(255) not null,
+    first_name varchar(255) not null,
+    last_name varchar(255) not null,
+    gender varchar(1),
+    person_ID varchar(255) not null
+    foreign key(username) references person(username)
+);
+
+create table person
+(
+    id integer not null primary key autoincrement,
+    person_ID varchar(255) not null,
+    associated_username varchar(255),
+    first_name varchar(255) not null,
+    last_name varchar(255) not null,
+    gender varchar(255) not null,
+    father_ID varchar(255),
+    mother_ID varchar(255),
+    spouse_ID varchar(255),
+    foreign key(username) references person(username)
+);
+
+create table event
+(
+    id integer not null primary key autoincrement,
+    event_ID varchar(255) not null,
+    associated_username varchar(255),
+    person_ID varchar(255),
+    latitude float not null,
+    longitude float not null,
+    country varchar(255) not null,
+    city varchar(255) not null,
+    event_type varchar(255) not null,
+    year integer not null,
+    foreign key(username) references person(username)
+);
+
+create table authtoken
+(
+    id integer not null primary key autoincrement,
+    person_ID varchar(255) not null,
+    username varchar(255) not null,
+	auth_token integer not null,
+	foreign key(person_ID) references person(person_ID),
+	foreign key(person_ID) references user(person_ID),
+	foreign key(username) references user(username)
+);
+
+insert into user (username, password, email_address, first_name, last_name, gender, person_ID);
+
