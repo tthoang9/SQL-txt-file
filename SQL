@@ -45,8 +45,8 @@ create table authtoken
     id integer not null primary key autoincrement,
     person_ID varchar(255) not null,
     username varchar(255) not null,
-	auth_token integer not null,
-	foreign key(person_ID) references person(person_ID),
-	foreign key(person_ID) references user(person_ID),
-	foreign key(username) references user(username)
+    auth_token integer not null,
+    foreign key(person_ID) references person(person_ID),
+    foreign key(person_ID) references user(person_ID),
+    foreign key(username) references user(username)
 );
